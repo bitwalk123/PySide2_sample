@@ -11,7 +11,6 @@ class HelloWorld(QWidget):
 
     def __init__(self):
         super().__init__()
-        self.setWindowIcon(QIcon('qt.png'))
         self.setWindowTitle('Hello, World!')
         self.initUI()
         self.show()
