@@ -9,12 +9,16 @@ class Example(QWidget):
 
     def initUI(self):
         btn = QPushButton("プッシュボタン", self)
-        btn.clicked.connect(QCoreApplication.instance().quit)
+        btn.clicked.connect(self.buttonClicked)
         btn.resize(btn.sizeHint())
         btn.move(50, 50)
 
         self.setWindowTitle("PushButton")
         self.show()
+
+    def buttonClicked(self):
+        sender = self.sender()
+        print('「' + sender.text() + '」がクリックされました。')
 
     def __init__(self):
         super(Example, self).__init__()
