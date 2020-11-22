@@ -27,7 +27,7 @@ class Example(QWidget):
         vbox.addWidget(self.lbl)
         self.setLayout(vbox)
 
-        self.setGeometry(300, 300, 250, 180)
+        self.setGeometry(300, 300, 250, 200)
         self.setWindowTitle('Font dialog')
         self.show()
 
