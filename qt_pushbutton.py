@@ -10,7 +10,7 @@ class Example(QWidget):
         btn = QPushButton("プッシュボタン", self)
         btn.clicked.connect(self.buttonClicked)
         btn.resize(btn.sizeHint())
-        btn.move(50, 50)
+        btn.move(50, 20)
 
         self.setWindowTitle("PushButton")
         self.show()
