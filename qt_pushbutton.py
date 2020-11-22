@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 import sys
+from PySide2.QtCore import Slot
 from PySide2.QtWidgets import QApplication, QWidget, QPushButton
-
 
 class Example(QWidget):
 
@@ -15,6 +15,7 @@ class Example(QWidget):
         self.setWindowTitle("PushButton")
         self.show()
 
+    @Slot()
     def buttonClicked(self):
         sender = self.sender()
         print('「' + sender.text() + '」がクリックされました。')
