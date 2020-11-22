@@ -1,1 +1,1 @@
-# PySide2_sample
+# PySide2 sample
