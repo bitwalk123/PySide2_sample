@@ -8,13 +8,12 @@ from PySide2.QtCore import QCoreApplication
 class Example(QWidget):
 
     def initUI(self):
-        qbtn = QPushButton("Quit", self)
-        qbtn.clicked.connect(QCoreApplication.instance().quit)
-        qbtn.resize(qbtn.sizeHint())
-        qbtn.move(50, 50)
+        btn = QPushButton("プッシュボタン", self)
+        btn.clicked.connect(QCoreApplication.instance().quit)
+        btn.resize(btn.sizeHint())
+        btn.move(50, 50)
 
-        self.setGeometry(300, 300, 250, 150)
-        self.setWindowTitle("Quit Button")
+        self.setWindowTitle("PushButton")
         self.show()
 
     def __init__(self):
