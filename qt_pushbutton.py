@@ -2,7 +2,6 @@
 # coding: utf-8
 import sys
 from PySide2.QtWidgets import QApplication, QWidget, QPushButton
-from PySide2.QtCore import QCoreApplication
 
 
 class Example(QWidget):
