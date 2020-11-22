@@ -3,17 +3,11 @@
 
 import sys
 from PySide2 import QtCore
-from PySide2.QtGui import QFont, QIcon
+from PySide2.QtGui import QFont
 from PySide2.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
 
 
-class HelloWorld(QWidget):
-
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle('Hello, World!')
-        self.initUI()
-        self.show()
+class Hello(QWidget):
 
     def initUI(self):
         label = QLabel('こんにちは、世界！')
@@ -25,9 +19,19 @@ class HelloWorld(QWidget):
         layout = QVBoxLayout()
         layout.addWidget(label)
         self.setLayout(layout)
+        self.setWindowTitle('Hello World!')
+        self.show()
+
+    def __init__(self):
+        super(Hello, self).__init__()
+        self.initUI()
+
+
+def main():
+    app = QApplication(sys.argv)
+    ex = Hello()
+    sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    hello = HelloWorld()
-    sys.exit(app.exec_())
+    main()
