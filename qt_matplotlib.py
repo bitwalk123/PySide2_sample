@@ -51,7 +51,6 @@ class Example(QWidget):
         layout.addWidget(canvas)
 
         self.setWindowTitle('SPC Chart')
-
         self.show()
 
     def __init__(self):
