@@ -3,11 +3,13 @@
 
 import sys
 from PySide2.QtWidgets import QApplication, QVBoxLayout, QWidget
+
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 
 import pandas as pd
+
 
 class Example(QWidget):
 
