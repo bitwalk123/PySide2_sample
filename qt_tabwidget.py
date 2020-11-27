@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 # reference : http://mukaimame.blog111.fc2.com/blog-entry-842.html
+
 import sys
 from PySide2.QtWidgets import (
     QApplication,
