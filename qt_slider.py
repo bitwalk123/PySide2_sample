@@ -8,6 +8,9 @@ from PySide2.QtGui import QPixmap
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
 
@@ -34,10 +37,6 @@ class Example(QWidget):
             self.label.setPixmap(QPixmap('med.png'))
         else:
             self.label.setPixmap(QPixmap('max.png'))
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

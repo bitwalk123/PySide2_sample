@@ -5,6 +5,9 @@ from PySide2.QtWidgets import QApplication, QWidget, QLabel
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         lb = QLabel('<font color=#888 size=40>ラベル</font>', self)
@@ -13,10 +16,6 @@ class Example(QWidget):
 
         self.setWindowTitle("Label")
         self.show()
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

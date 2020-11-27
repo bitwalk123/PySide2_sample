@@ -6,6 +6,9 @@ from PySide2.QtWidgets import QApplication, QWidget, QMessageBox
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         self.setGeometry(300, 300, 250, 150)
@@ -23,10 +26,6 @@ class Example(QWidget):
             event.accept()
         else:
             event.ignore()
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

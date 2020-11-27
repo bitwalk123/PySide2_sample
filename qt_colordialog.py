@@ -8,6 +8,9 @@ from PySide2.QtGui import QColor
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         col = QColor(0, 0, 0)
@@ -30,10 +33,6 @@ class Example(QWidget):
 
         if col.isValid():
             self.frm.setStyleSheet("QWidget { background-color: %s }" % col.name())
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

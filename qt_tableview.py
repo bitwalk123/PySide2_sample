@@ -71,6 +71,10 @@ class SimpleTableModel(QAbstractTableModel):
 
 
 class Example(QMainWindow):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.initUI()
+
     def initUI(self):
         self.root_widget: QWidget = QWidget()
         self.layout: QVBoxLayout = QVBoxLayout()
@@ -84,10 +88,6 @@ class Example(QMainWindow):
         self.setCentralWidget(self.root_widget)
         self.setWindowTitle('TableView')
         self.show()
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.initUI()
 
 
 def main():

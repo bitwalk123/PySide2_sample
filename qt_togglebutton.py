@@ -7,6 +7,9 @@ from PySide2.QtGui import QColor
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
 
@@ -54,10 +57,6 @@ class Example(QWidget):
             self.col.setBlue(val)
 
         self.square.setStyleSheet("QFrame { background-color: %s }" % self.col.name())
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

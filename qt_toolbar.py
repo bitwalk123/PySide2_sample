@@ -14,6 +14,9 @@ from PySide2.QtWidgets import (
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         layout = QGridLayout()
@@ -42,10 +45,6 @@ class Example(QWidget):
 
         self.setWindowTitle("ToolBar")
         self.show()
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

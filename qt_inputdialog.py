@@ -6,6 +6,9 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QIn
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         self.btn = QPushButton('ダイアログ', self)
@@ -23,10 +26,6 @@ class Example(QWidget):
         text, ok = QInputDialog.getText(self, 'Input Dialog', '氏名の入力：')
         if ok:
             self.le.setText(str(text))
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

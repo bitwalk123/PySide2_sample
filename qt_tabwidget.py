@@ -23,6 +23,10 @@ class Tab1Widget(QWidget):
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
+
     def initUI(self):
         qtab = QTabWidget()
         qtab.addTab(Tab1Widget(parent=self), 'Tab1')
@@ -36,10 +40,6 @@ class Example(QWidget):
         self.setGeometry(300, 300, 250, 150)
         self.setWindowTitle('Tab Layout')
         self.show()
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

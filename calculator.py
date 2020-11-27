@@ -6,6 +6,10 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QGridLayout, Q
 
 
 class Calculator(QWidget):
+    def __init__(self):
+        super(Calculator, self).__init__()
+        self.initUI()
+
     def initUI(self):
         names = ['Cls', 'Bck', '', 'Close', '7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=',
                  '+']
@@ -32,10 +36,6 @@ class Calculator(QWidget):
         self.move(300, 150)
         self.setWindowTitle('Calculator')
         self.show()
-
-    def __init__(self):
-        super(Calculator, self).__init__()
-        self.initUI()
 
 
 def main():

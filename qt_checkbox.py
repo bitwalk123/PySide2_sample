@@ -7,6 +7,9 @@ from PySide2.QtWidgets import QApplication, QWidget, QCheckBox
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         cbox = QCheckBox('チェックボックス', self)
@@ -25,10 +28,6 @@ class Example(QWidget):
             print('「' + sender.text() + '」にチェックを入れました。')
         else:
             print('「' + sender.text() + '」のチェックを外しました。')
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

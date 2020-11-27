@@ -11,6 +11,9 @@ import pandas as pd
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         # example dataframe
@@ -92,9 +95,6 @@ class Example(QWidget):
         self.setWindowTitle('SPC Chart')
         self.show()
 
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

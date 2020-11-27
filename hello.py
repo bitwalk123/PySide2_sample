@@ -8,6 +8,9 @@ from PySide2.QtWidgets import QApplication, QWidget, QLabel, QVBoxLayout
 
 
 class Hello(QWidget):
+    def __init__(self):
+        super(Hello, self).__init__()
+        self.initUI()
 
     def initUI(self):
         label = QLabel('こんにちは、世界！')
@@ -21,10 +24,6 @@ class Hello(QWidget):
         self.setLayout(layout)
         self.setWindowTitle('Hello World!')
         self.show()
-
-    def __init__(self):
-        super(Hello, self).__init__()
-        self.initUI()
 
 
 def main():

@@ -7,6 +7,9 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QFontDialog, Q
 
 
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         vbox = QVBoxLayout()
@@ -35,10 +38,6 @@ class Example(QWidget):
         ok, font = QFontDialog.getFont()
         if ok:
             self.lbl.setFont(font)
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

@@ -25,6 +25,9 @@ data = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
 
 
 class Example(QWidget):
+    def __init__(self, parent=None):
+        super(Example, self).__init__(parent)
+        self.initUI()
 
     def initUI(self):
         rows = len(data)
@@ -50,10 +53,6 @@ class Example(QWidget):
         layout.addWidget(self.table)
         self.setLayout(layout)
         self.show()
-
-    def __init__(self, parent=None):
-        super(Example, self).__init__(parent)
-        self.initUI()
 
 
 def main():

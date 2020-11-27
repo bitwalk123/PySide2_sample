@@ -5,6 +5,9 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QTextEdit, QAction, QFi
 
 
 class Example(QMainWindow):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         self.textEdit = QTextEdit()
@@ -35,10 +38,6 @@ class Example(QMainWindow):
             with f:
                 data = f.read()
                 self.textEdit.setText(data)
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

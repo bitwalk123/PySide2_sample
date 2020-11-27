@@ -6,6 +6,9 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QAction
 
 
 class Example(QMainWindow):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         exitAction = QAction('終了', self)
@@ -24,15 +27,12 @@ class Example(QMainWindow):
         self.statusBar().showMessage("準備完了")
         self.show()
 
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
-
 
 def main():
     app = QApplication(sys.argv)
     ex = Example()
     sys.exit(app.exec_())
+
 
 if __name__ == '__main__':
     main()

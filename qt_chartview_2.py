@@ -16,7 +16,6 @@ from random import randint
 
 
 class Example(QWidget):
-
     def initUI(self):
 
         dataY = [9.030, 8.810, 9.402, 8.664, 8.773, 8.774, 8.416, 9.101, 8.687, 8.767]
@@ -33,7 +32,6 @@ class Example(QWidget):
 
         series1.setColor(QtGui.QColor('blue'))
         series2.setColor(QtGui.QColor('gray'))
-
 
         chart = QtCharts.QChart()
         for series in seriesList:
@@ -73,11 +71,10 @@ class Example(QWidget):
         chart.addAxis(axisY2, QtCore.Qt.AlignRight)
 
         for series in seriesList:
-            #chart.setAxisX(axisX, series)
-            #chart.setAxisY(axisY, series)
+            # chart.setAxisX(axisX, series)
+            # chart.setAxisY(axisY, series)
             series.attachAxis(axisX)
             series.attachAxis(axisY)
-
 
         chartView = QtCharts.QChartView(chart)
         chartView.setRenderHint(QPainter.Antialiasing)

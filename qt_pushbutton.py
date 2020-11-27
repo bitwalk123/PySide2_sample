@@ -4,7 +4,11 @@ import sys
 from PySide2.QtCore import Slot
 from PySide2.QtWidgets import QApplication, QWidget, QPushButton
 
+
 class Example(QWidget):
+    def __init__(self):
+        super(Example, self).__init__()
+        self.initUI()
 
     def initUI(self):
         btn = QPushButton("プッシュボタン", self)
@@ -19,10 +23,6 @@ class Example(QWidget):
     def buttonClicked(self):
         sender = self.sender()
         print('「' + sender.text() + '」がクリックされました。')
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():
