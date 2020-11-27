@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # reference : https://stackoverflow.com/questions/58075822/pyside2-and-matplotlib-how-to-make-matplotlib-run-in-a-separate-process-as-i
+
 import sys
 
 from PySide2.QtCore import QFile, QObject, Signal, Slot, QTimer
