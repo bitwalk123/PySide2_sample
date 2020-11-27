@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+# reference : https://github.com/andriyantohalim/PySide2_Tutorial
 
 import sys
 from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QColorDialog, QFrame
