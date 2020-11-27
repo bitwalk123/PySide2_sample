@@ -96,7 +96,6 @@ class Example(QWidget):
         self.show()
 
 
-
 def main():
     app = QApplication(sys.argv)
     ex = Example()
