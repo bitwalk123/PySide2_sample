@@ -13,13 +13,13 @@ class Hello(QWidget):
         self.initUI()
 
     def initUI(self):
-        label = QLabel('こんにちは、世界！')
-        font = QFont()
+        label: QLabel = QLabel('こんにちは、世界！')
+        font: QFont = QFont()
         font.setPointSize(24)
         label.setFont(font)
         label.setAlignment(QtCore.Qt.AlignCenter)
 
-        layout = QVBoxLayout()
+        layout: QVBoxLayout = QVBoxLayout()
         layout.addWidget(label)
         self.setLayout(layout)
         self.setWindowTitle('Hello World!')
@@ -27,8 +27,8 @@ class Hello(QWidget):
 
 
 def main():
-    app = QApplication(sys.argv)
-    ex = Hello()
+    app: QApplication = QApplication(sys.argv)
+    ex: Hello = Hello()
     sys.exit(app.exec_())
 
 
