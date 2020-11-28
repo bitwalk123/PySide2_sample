@@ -9,27 +9,27 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
 
     def initUI(self):
-        btn = QPushButton("プッシュボタン", self)
+        btn: QPushButton = QPushButton('プッシュボタン', self)
         btn.clicked.connect(self.buttonClicked)
         btn.resize(btn.sizeHint())
         btn.move(50, 20)
 
-        self.setWindowTitle("PushButton")
+        self.setWindowTitle('PushButton')
         self.show()
 
     @Slot()
     def buttonClicked(self):
-        sender = self.sender()
-        print('「' + sender.text() + '」がクリックされました。')
+        obj: QPushButton = self.sender()
+        print('「' + obj.text() + '」がクリックされました。')
 
 
 def main():
-    app = QApplication(sys.argv)
-    ex = Example()
+    app: QApplication = QApplication(sys.argv)
+    ex: Example = Example()
     sys.exit(app.exec_())
 
 
