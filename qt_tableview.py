@@ -3,8 +3,6 @@
 # reference: https://pc-technique.info/2020/02/207/
 
 import sys
-import dataclasses
-
 from typing import Any, List
 from PySide2.QtCore import (
     Qt,
@@ -12,87 +10,68 @@ from PySide2.QtCore import (
     QAbstractTableModel
 )
 
-# For Sample
 from PySide2.QtWidgets import (
     QApplication,
     QMainWindow,
-    QVBoxLayout,
-    QWidget,
-    QTableView
+    QTableView,
+    QHeaderView,
 )
 
 
-# custom Data class
-@dataclasses.dataclass
-class CustomData:
-    name: str
-    age: int
-    country: str
-
-    def toList(self) -> list:
-        return [self.name, self.age, self.country]
-
-    @classmethod
-    def toHeaderList(cls) -> List[str]:
-        return ["NAME", "AGE", "COUNTRY"]
-
-
 class SimpleTableModel(QAbstractTableModel):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.custom_data: List[CustomData] = [
-            CustomData(name="Taro", age=24, country="Japan"),
-            CustomData(name="Jiro", age=20, country="Japan"),
-            CustomData(name="David", age=32, country="USA"),
-            CustomData(name="Wattson", age=15, country="US")
-        ]  # prepare table's source data (TEST)
+    def __init__(self, source: list, headers: list):
+        QAbstractTableModel.__init__(self)
+        self.source: list= source
+        self.headers: list = headers
 
     def data(self, index: QModelIndex, role: int) -> Any:
         if role == Qt.DisplayRole:
-            # The QTableView wants a cell text of 'index'
-            # BE CAREFUL about IndexError (rowCount() and/or columnCount() are incorrect.)
-            return self.custom_data[index.row()].toList()[index.column()]
+            return self.source[index.row()][index.column()]
 
     def rowCount(self, parent=QModelIndex()) -> int:
-        # = data count
-        return len(self.custom_data)
+        return len(self.source)
 
     def columnCount(self, parent=QModelIndex()) -> int:
-        return len(CustomData.toHeaderList())
+        return len(self.headers)
 
     def headerData(self, section: int, orientation: Qt.Orientation, role: int = Qt.DisplayRole):
-        if role == Qt.DisplayRole:
-            # The QTableView wants a header text
-            if orientation == Qt.Horizontal:
-                # BE CAREFUL about IndexError
-                return CustomData.toHeaderList()[section]
-
-            return ""  # There is no vertical header
+        if role != Qt.DisplayRole:
+            return
+        if orientation == Qt.Horizontal:
+            return self.headers[section]
+        else:
+            return "{}".format(section + 1)
 
 
 class Example(QMainWindow):
+    prefdata: list = [
+        ['栃木県', '宇都宮'],
+        ['千葉県', '千葉'],
+        ['東京都', '東京'],
+        ['神奈川県', '横浜'],
+    ]
+    header: list = ['都道府県', '県庁所在地']
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.initUI()
 
     def initUI(self):
-        self.root_widget: QWidget = QWidget()
-        self.layout: QVBoxLayout = QVBoxLayout()
-        self.table: QTableView = QTableView()
-        self.layout.addWidget(self.table)
-        self.root_widget.setLayout(self.layout)
+        table: QTableView = QTableView()
+        table.setWordWrap(False)
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        # set table model
+        table.setModel(SimpleTableModel(self.prefdata, self.header))
 
-        # create model and set
-        self.table.setModel(SimpleTableModel())
-
-        self.setCentralWidget(self.root_widget)
+        self.setCentralWidget(table)
         self.setWindowTitle('TableView')
         self.show()
 
 
 def main():
-    app = QApplication(sys.argv)
-    ex = Example()
+    app: QApplication = QApplication(sys.argv)
+    ex: QMainWindow = Example()
     sys.exit(app.exec_())
 
 

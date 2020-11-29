@@ -21,7 +21,7 @@ from PySide2.QtWidgets import (
 class SimpleTableModel(QAbstractTableModel):
     def __init__(self, source: list, headers: list):
         QAbstractTableModel.__init__(self)
-        self.source: list = source
+        self.source: list= source
         self.headers: list = headers
 
     def data(self, index: QModelIndex, role: int) -> Any:
@@ -45,13 +45,10 @@ class SimpleTableModel(QAbstractTableModel):
 
 class Example(QMainWindow):
     prefdata: list = [
-        ['茨城県', '310-8555 水戸市笠原町 978-6'],
-        ['栃木県', '320-8501 宇都宮市塙田 1-1-20'],
-        ['群馬県', '371-8570 前橋市大手町 1-1-1'],
-        ['埼玉県', '330-9301 さいたま市浦和区高砂 3-15-1'],
-        ['千葉県', '260-8667 千葉市中央区市場町 1-1'],
-        ['東京都', '163-8001 新宿区西新宿 2-8-1'],
-        ['神奈川県', '231-8588 横浜市中区日本大通 1'],
+        ['栃木県', '宇都宮'],
+        ['千葉県', '千葉'],
+        ['東京都', '東京'],
+        ['神奈川県', '横浜'],
     ]
     header: list = ['都道府県', '県庁所在地']
 
@@ -62,13 +59,8 @@ class Example(QMainWindow):
     def initUI(self):
         table: QTableView = QTableView()
         table.setWordWrap(False)
-
-        col_header: QHeaderView = table.horizontalHeader()
-        col_header.setSectionResizeMode(QHeaderView.ResizeToContents)
-
-        row_header: QHeaderView = table.verticalHeader()
-        row_header.setSectionResizeMode(QHeaderView.ResizeToContents)
-
+        table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
+        table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         # set table model
         table.setModel(SimpleTableModel(self.prefdata, self.header))
 
@@ -79,7 +71,7 @@ class Example(QMainWindow):
 
 def main():
     app: QApplication = QApplication(sys.argv)
-    ex: Example = Example()
+    ex: QMainWindow = Example()
     sys.exit(app.exec_())
 
 
