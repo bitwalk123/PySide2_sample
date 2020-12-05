@@ -20,6 +20,7 @@ class Example(QMainWindow):
         super().__init__()
         self.initUI()
         self.resize(800, 600)
+        self.setWindowTitle('Histogram')
         self.show()
 
     def initUI(self):
@@ -34,8 +35,7 @@ class Example(QMainWindow):
 
         ax.set_xlabel("Smarts")
         ax.set_ylabel("Probability")
-        ax.set_title(r"$\mathrm{Histogram\ of\ IQ:}\ \mu=100,\ \sigma=15$")
-        #ax.axis([40, 160, 0, 0.03])
+        ax.set_title(r"$\mathrm{Histogram\ of\ IQ:}\ \mu=%s,\ \sigma=%s$" % (mu, sigma))
         ax.grid(True)
 
         self.setCentralWidget(canvas)
