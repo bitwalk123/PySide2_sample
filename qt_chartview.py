@@ -16,8 +16,10 @@ from random import randint
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.resize(600, 400)
+        self.show()
 
     def initUI(self):
         layout = QVBoxLayout()
@@ -47,8 +49,6 @@ class Example(QWidget):
         chartView.chart().setBackgroundBrush(QtGui.QColor("ivory"))
         layout.addWidget(chartView)
         self.setLayout(layout)
-        self.resize(600, 400)
-        self.show()
 
 
 def main():

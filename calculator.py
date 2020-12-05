@@ -8,8 +8,11 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QGridLayout, Q
 
 class Calculator(QWidget):
     def __init__(self):
-        super(Calculator, self).__init__()
+        super().__init__()
         self.initUI()
+        self.move(300, 150)
+        self.setWindowTitle('Calculator')
+        self.show()
 
     def initUI(self):
         names = ['Cls', 'Bck', '', 'Close', '7', '8', '9', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=',
@@ -33,10 +36,6 @@ class Calculator(QWidget):
             j = j + 1
 
         self.setLayout(grid)
-
-        self.move(300, 150)
-        self.setWindowTitle('Calculator')
-        self.show()
 
 
 def main():

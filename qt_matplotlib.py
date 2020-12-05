@@ -12,8 +12,10 @@ import pandas as pd
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setWindowTitle('SPC Chart')
+        self.show()
 
     def initUI(self):
         # example dataframe
@@ -91,9 +93,6 @@ class Example(QWidget):
         layout = QVBoxLayout(self)
         layout.addWidget(toolbar)
         layout.addWidget(canvas)
-
-        self.setWindowTitle('SPC Chart')
-        self.show()
 
 
 def main():

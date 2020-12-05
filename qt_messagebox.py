@@ -8,20 +8,19 @@ from PySide2.QtWidgets import QApplication, QWidget, QMessageBox
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
-
-    def initUI(self):
+        super().__init__()
         self.setGeometry(300, 300, 250, 150)
         self.setWindowTitle("Message Box")
         self.show()
 
     def closeEvent(self, event):
-        reply = QMessageBox.question(self,
-                                     'メッセージ',
-                                     '本当に終了しますか？',
-                                     QMessageBox.Yes | QMessageBox.No,
-                                     QMessageBox.No)
+        reply = QMessageBox.question(
+            self,
+            'メッセージ',
+            '本当に終了しますか？',
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
 
         if reply == QMessageBox.Yes:
             event.accept()

@@ -8,8 +8,11 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QHBoxLayout, Q
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 400, 100)
+        self.setWindowTitle('BoxLayout')
+        self.show()
 
     def initUI(self):
         btn_ok = QPushButton('了解')
@@ -25,9 +28,6 @@ class Example(QWidget):
         vbox.addLayout(hbox)
 
         self.setLayout(vbox)
-        self.setGeometry(300, 300, 400, 100)
-        self.setWindowTitle('BoxLayout')
-        self.show()
 
 
 def main():

@@ -9,8 +9,11 @@ from PySide2 import QtCore
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 250, 150)
+        self.setWindowTitle('Signal & slot')
+        self.show()
 
     def initUI(self):
         lcd = QLCDNumber(self)
@@ -22,10 +25,6 @@ class Example(QWidget):
 
         self.setLayout(vbox)
         sld.valueChanged.connect(lcd.display)
-
-        self.setGeometry(300, 300, 250, 150)
-        self.setWindowTitle('Signal & slot')
-        self.show()
 
 
 def main():

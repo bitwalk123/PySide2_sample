@@ -8,8 +8,11 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QFontDialog, Q
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 250, 200)
+        self.setWindowTitle('Font dialog')
+        self.show()
 
     def initUI(self):
         vbox = QVBoxLayout()
@@ -29,10 +32,6 @@ class Example(QWidget):
 
         vbox.addWidget(self.lbl)
         self.setLayout(vbox)
-
-        self.setGeometry(300, 300, 250, 200)
-        self.setWindowTitle('Font dialog')
-        self.show()
 
     def showDialog(self):
         ok, font = QFontDialog.getFont()

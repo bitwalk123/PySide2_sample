@@ -16,8 +16,12 @@ from random import randint
 
 
 class Example(QWidget):
-    def initUI(self):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+        self.show()
 
+    def initUI(self):
         dataY = [9.030, 8.810, 9.402, 8.664, 8.773, 8.774, 8.416, 9.101, 8.687, 8.767]
 
         seriesList = []
@@ -83,11 +87,6 @@ class Example(QWidget):
         layout.addWidget(chartView)
         self.setLayout(layout)
         self.resize(600, 400)
-        self.show()
-
-    def __init__(self):
-        super(Example, self).__init__()
-        self.initUI()
 
 
 def main():

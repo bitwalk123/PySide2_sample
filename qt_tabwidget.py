@@ -25,8 +25,11 @@ class Tab1Widget(QWidget):
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 250, 150)
+        self.setWindowTitle('Tab Layout')
+        self.show()
 
     def initUI(self):
         qtab = QTabWidget()
@@ -37,10 +40,6 @@ class Example(QWidget):
         hbox.addWidget(qtab)
 
         self.setLayout(hbox)
-
-        self.setGeometry(300, 300, 250, 150)
-        self.setWindowTitle('Tab Layout')
-        self.show()
 
 
 def main():

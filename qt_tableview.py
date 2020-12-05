@@ -21,7 +21,7 @@ from PySide2.QtWidgets import (
 class SimpleTableModel(QAbstractTableModel):
     def __init__(self, source: list, headers: list):
         QAbstractTableModel.__init__(self)
-        self.source: list= source
+        self.source: list = source
         self.headers: list = headers
 
     def data(self, index: QModelIndex, role: int) -> Any:
@@ -58,6 +58,8 @@ class Example(QMainWindow):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.initUI()
+        self.setWindowTitle('TableView')
+        self.show()
 
     def initUI(self):
         table: QTableView = QTableView()
@@ -66,10 +68,7 @@ class Example(QMainWindow):
         table.verticalHeader().setSectionResizeMode(QHeaderView.ResizeToContents)
         # set table model
         table.setModel(SimpleTableModel(self.prefdata, self.header))
-
         self.setCentralWidget(table)
-        self.setWindowTitle('TableView')
-        self.show()
 
 
 def main():

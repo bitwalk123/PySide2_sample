@@ -8,8 +8,9 @@ from PySide2.QtWidgets import QMainWindow, QApplication, QAction
 
 class Example(QMainWindow):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.show()
 
     def initUI(self):
         exitAction = QAction('終了', self)
@@ -26,7 +27,6 @@ class Example(QMainWindow):
         self.setGeometry(300, 300, 250, 150)
         self.setWindowTitle('MenuBar')
         self.statusBar().showMessage("準備完了")
-        self.show()
 
 
 def main():

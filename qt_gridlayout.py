@@ -8,8 +8,11 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QGridLayout, Q
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.move(300, 150)
+        self.setWindowTitle('GridLayout')
+        self.show()
 
     def initUI(self):
         names = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -27,10 +30,6 @@ class Example(QWidget):
             j = j + 1
 
         self.setLayout(grid)
-
-        self.move(300, 150)
-        self.setWindowTitle('GridLayout')
-        self.show()
 
 
 def main():

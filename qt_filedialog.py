@@ -8,8 +8,11 @@ from PySide2.QtWidgets import QApplication, QMainWindow, QTextEdit, QAction, QFi
 
 class Example(QMainWindow):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 350, 300)
+        self.setWindowTitle('File dialog')
+        self.show()
 
     def initUI(self):
         self.textEdit = QTextEdit()
@@ -27,10 +30,6 @@ class Example(QMainWindow):
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('ファイル(&F)')
         fileMenu.addAction(openFile)
-
-        self.setGeometry(300, 300, 350, 300)
-        self.setWindowTitle('File dialog')
-        self.show()
 
     def showDialog(self):
         dialog = QFileDialog()

@@ -11,15 +11,14 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
+        self.setWindowTitle('PushButton')
+        self.show()
 
     def initUI(self):
         btn: QPushButton = QPushButton('プッシュボタン', self)
         btn.clicked.connect(self.buttonClicked)
         btn.resize(btn.sizeHint())
         btn.move(50, 20)
-
-        self.setWindowTitle('PushButton')
-        self.show()
 
     @Slot()
     def buttonClicked(self):

@@ -20,6 +20,7 @@ class Example(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
         self.initUI()
+        self.show()
 
     def initUI(self):
         # create a simple main widget to keep the figure
@@ -44,8 +45,6 @@ class Example(QMainWindow):
         anotherWidget = QLineEdit()
         # add the new widget to the existing navigation toolbar
         self.navigation_toolbar.addWidget(anotherWidget)
-
-        self.show()
 
 
 def main():

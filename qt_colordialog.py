@@ -9,8 +9,11 @@ from PySide2.QtGui import QColor
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 250, 180)
+        self.setWindowTitle('Color dialog')
+        self.show()
 
     def initUI(self):
         col = QColor(0, 0, 0)
@@ -23,10 +26,6 @@ class Example(QWidget):
         self.frm = QFrame(self)
         self.frm.setStyleSheet("QWidget { background-color: %s }" % col.name())
         self.frm.setGeometry(130, 20, 100, 100)
-
-        self.setGeometry(300, 300, 250, 180)
-        self.setWindowTitle('Color dialog')
-        self.show()
 
     def showDialog(self):
         col = QColorDialog.getColor()

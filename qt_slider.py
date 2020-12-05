@@ -10,8 +10,11 @@ from PySide2.QtGui import QPixmap
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 280, 170)
+        self.setWindowTitle('Slider')
+        self.show()
 
     def initUI(self):
 
@@ -23,10 +26,6 @@ class Example(QWidget):
         self.label = QLabel(self)
         self.label.setPixmap(QPixmap('mute.png'))
         self.label.setGeometry(160, 40, 80, 30)
-
-        self.setGeometry(300, 300, 280, 170)
-        self.setWindowTitle('Slider')
-        self.show()
 
     def changeValue(self, value):
 

@@ -8,8 +8,11 @@ from PySide2.QtWidgets import QApplication, QWidget, QPushButton, QLineEdit, QIn
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 280, 60)
+        self.setWindowTitle('Input dialog')
+        self.show()
 
     def initUI(self):
         self.btn = QPushButton('ダイアログ', self)
@@ -18,10 +21,6 @@ class Example(QWidget):
 
         self.le = QLineEdit(self)
         self.le.move(110, 20)
-
-        self.setGeometry(300, 300, 280, 60)
-        self.setWindowTitle('Input dialog')
-        self.show()
 
     def showDialog(self):
         text, ok = QInputDialog.getText(self, 'Input Dialog', '氏名の入力：')

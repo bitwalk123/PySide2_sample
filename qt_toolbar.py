@@ -15,8 +15,10 @@ from PySide2.QtWidgets import (
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setWindowTitle("ToolBar")
+        self.show()
 
     def initUI(self):
         layout = QGridLayout()
@@ -42,9 +44,6 @@ class Example(QWidget):
         # Add textfield to window
         tedit = QPlainTextEdit()
         layout.addWidget(tedit)
-
-        self.setWindowTitle("ToolBar")
-        self.show()
 
 
 def main():

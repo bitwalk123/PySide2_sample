@@ -9,8 +9,11 @@ from PySide2.QtGui import QColor
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 280, 170)
+        self.setWindowTitle("Toggle Button")
+        self.show()
 
     def initUI(self):
 
@@ -37,10 +40,6 @@ class Example(QWidget):
         self.square = QFrame(self)
         self.square.setGeometry(150, 20, 100, 100)
         self.square.setStyleSheet("QWidget { background-color: %s }" % self.col.name())
-
-        self.setGeometry(300, 300, 280, 170)
-        self.setWindowTitle("Toggle Button")
-        self.show()
 
     def setColor(self, pressed):
         source = self.sender()

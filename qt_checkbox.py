@@ -9,18 +9,17 @@ from PySide2.QtWidgets import QApplication, QWidget, QCheckBox
 
 class Example(QWidget):
     def __init__(self):
-        super(Example, self).__init__()
+        super().__init__()
         self.initUI()
+        self.setGeometry(300, 300, 200, 100)
+        self.setWindowTitle("CheckBox")
+        self.show()
 
     def initUI(self):
         cbox = QCheckBox('チェックボックス', self)
         cbox.move(20, 20)
         cbox.toggle()
         cbox.stateChanged.connect(self.checkboxChanged)
-
-        self.setGeometry(300, 300, 200, 100)
-        self.setWindowTitle("CheckBox")
-        self.show()
 
     @Slot()
     def checkboxChanged(self, state):
