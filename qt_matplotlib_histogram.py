@@ -2,7 +2,7 @@
 import numpy as np
 
 import sys
-from PySide2 import QtCore, QtGui
+from PySide2 import QtCore
 from PySide2.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -19,7 +19,7 @@ class Example(QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.resize(800, 400)
+        self.resize(800, 600)
         self.show()
 
     def initUI(self):
@@ -35,7 +35,7 @@ class Example(QMainWindow):
         ax.set_xlabel("Smarts")
         ax.set_ylabel("Probability")
         ax.set_title(r"$\mathrm{Histogram\ of\ IQ:}\ \mu=100,\ \sigma=15$")
-        ax.axis([40, 160, 0, 0.03])
+        #ax.axis([40, 160, 0, 0.03])
         ax.grid(True)
 
         self.setCentralWidget(canvas)
