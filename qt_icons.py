@@ -21,6 +21,7 @@ class Example(QWidget):
         super().__init__()
         self.initUI()
         self.Button()
+        self.setWindowTitle('Qt icons')
         self.show()
 
     def initUI(self):
@@ -105,14 +106,14 @@ class Example(QWidget):
             QStyle.SP_MediaVolume,
             QStyle.SP_MediaVolumeMuted,
             QStyle.SP_LineEditClearButton,
-            QStyle.SP_DialogYesToAllButton,
-            QStyle.SP_DialogNoToAllButton,
-            QStyle.SP_DialogSaveAllButton,
-            QStyle.SP_DialogAbortButton,
-            QStyle.SP_DialogRetryButton,
-            QStyle.SP_DialogIgnoreButton,
-            QStyle.SP_RestoreDefaultsButton,
-            QStyle.SP_CustomBase,
+            #QStyle.SP_DialogYesToAllButton,
+            #QStyle.SP_DialogNoToAllButton,
+            #QStyle.SP_DialogSaveAllButton,
+            #QStyle.SP_DialogAbortButton,
+            #QStyle.SP_DialogRetryButton,
+            #QStyle.SP_DialogIgnoreButton,
+            #QStyle.SP_RestoreDefaultsButton,
+            #QStyle.SP_CustomBase,
         ]
 
         StylesText = [
@@ -187,14 +188,14 @@ class Example(QWidget):
             'SP_MediaVolume',
             'SP_MediaVolumeMuted',
             'SP_LineEditClearButton',
-            'SP_DialogYesToAllButton',
-            'SP_DialogNoToAllButton',
-            'SP_DialogSaveAllButton',
-            'SP_DialogAbortButton',
-            'SP_DialogRetryButton',
-            'SP_DialogIgnoreButton',
-            'SP_RestoreDefaultsButton',
-            'SP_CustomBase',
+            #'SP_DialogYesToAllButton',
+            #'SP_DialogNoToAllButton',
+            #'SP_DialogSaveAllButton',
+            #'SP_DialogAbortButton',
+            #'SP_DialogRetryButton',
+            #'SP_DialogIgnoreButton',
+            #'SP_RestoreDefaultsButton',
+            #'SP_CustomBase',
         ]
 
         btn = [QToolButton(self) for i in range(len(Styles))]
