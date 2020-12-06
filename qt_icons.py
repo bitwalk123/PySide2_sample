@@ -22,6 +22,7 @@ class Example(QWidget):
         self.initUI()
         self.Button()
         self.setWindowTitle('Qt icons')
+        self.setGeometry(300, 300, 300, 300)
         self.show()
 
     def initUI(self):
@@ -31,7 +32,8 @@ class Example(QWidget):
         self.tray_icon.setIcon(QIcon(icon))
         self.setWindowIcon(QIcon(icon))
 
-        self.setGeometry(300, 300, 300, 300)
+        for path in QIcon.themeSearchPaths():
+            print("%s/%s" % (path, QIcon.themeName()))
 
     def Button(self):
         Styles = [
