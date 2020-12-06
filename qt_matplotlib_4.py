@@ -2,30 +2,54 @@
 # coding: utf-8
 
 import sys
-from PySide2.QtWidgets import QApplication, QVBoxLayout, QWidget
+from PySide2.QtGui import QIcon
+from PySide2.QtWidgets import (
+    QApplication,
+    QToolButton,
+    QVBoxLayout,
+    QWidget,
+)
 
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qt5agg import NavigationToolbar2QT as NavigationToolbar
+from matplotlib.backend_tools import ToolBase
 import matplotlib.pyplot as plt
 import pandas as pd
 
 
-class MyCustomToolbar(NavigationToolbar):
-    # def __init__(self, plotCanvas):
-    #    NavigationToolbar.__init__(self, plotCanvas)
+class MyNavigationToolbar(NavigationToolbar):
+    #NavigationToolbar.toolitems = (
+    #    ('Home', 'Reset original view', 'home', 'home'),
+    #    ('Back', 'Back to previous view', 'back', 'back'),
+    #    ('Forward', 'Forward to next view', 'forward', 'forward'),
+    #    (None, None, None, None),
+    #    ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
+    #    ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
+    #    ('Subplots', 'Configure subplots', 'subplots', 'configure_subplots'),
+    #    (None, None, None, None),
+    #    ('Save', 'Save the figure', 'filesave', 'save_figure'),
+    #)
+    #NavigationToolbar.toolitems = ()
 
-    NavigationToolbar.toolitems = (
-        ('Home', 'Reset original view', 'home', 'home'),
-        #('Back', 'Back to previous view', 'back', 'back'),
-        #('Forward', 'Forward to next view', 'forward', 'forward'),
-        (None, None, None, None),
-        ('Pan', 'Pan axes with left mouse, zoom with right', 'move', 'pan'),
-        ('Zoom', 'Zoom to rectangle', 'zoom_to_rect', 'zoom'),
-        # ('Subplots', 'Configure subplots', 'subplots', 'configure_subplots'),
-        (None, None, None, None),
-        # ('Save', 'Save the figure', 'filesave', 'save_figure'),
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        #self.layout().takeAt(1)
 
+        but_home: QToolButton = QToolButton()
+        but_home.setIcon(QIcon.fromTheme('edit-undo'))
+        but_home.setStatusTip('Reset original view')
+        but_home.clicked.connect(self.home)
+        self.addWidget(but_home)
+
+        but_zoom: QToolButton = QToolButton()
+        but_zoom.setIcon(QIcon('images/zoom.png'))
+        but_zoom.setStatusTip('Reset original view')
+        but_zoom.clicked.connect(self.zoom)
+        self.addWidget(but_zoom)
+
+
+class NewTool(ToolBase):
+    image = r'image/home.png'
 
 class Example(QWidget):
     def __init__(self):
@@ -106,7 +130,8 @@ class Example(QWidget):
 
         canvas = FigureCanvas(fig)
         # toolbar = NavigationToolbar(canvas, self)
-        toolbar = MyCustomToolbar(canvas, self)
+        # toolbar = MyCustomToolbar(canvas, self)
+        toolbar = MyNavigationToolbar(canvas, self)
 
         layout = QVBoxLayout(self)
         layout.addWidget(toolbar)
