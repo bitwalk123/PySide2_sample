@@ -89,6 +89,8 @@ class Example(QWidget):
 
         canvas = FigureCanvas(fig)
         toolbar = NavigationToolbar(canvas, self)
+        for x in toolbar.actions():
+            print(x.text())
 
         layout = QVBoxLayout(self)
         layout.addWidget(toolbar)
