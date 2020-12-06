@@ -89,9 +89,11 @@ class Example(QWidget):
 
         canvas = FigureCanvas(fig)
         toolbar = NavigationToolbar(canvas, self)
+        # reference: https://stackoverflow.com/questions/55779944/how-to-remove-toolbar-buttons-from-matplotlib
+        unwanted_buttons = ['Back', 'Forward']
         for x in toolbar.actions():
-            print(x.text())
-
+            if x.text() in unwanted_buttons:
+                toolbar.removeAction(x)
         layout = QVBoxLayout(self)
         layout.addWidget(toolbar)
         layout.addWidget(canvas)
