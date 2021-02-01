@@ -4,36 +4,36 @@
 # Reference
 # https://www.tutorialspoint.com/pyqt/pyqt_qcombobox_widget.htm
 import sys
-from PySide2.QtWidgets import QApplication, QComboBox, QHBoxLayout, QWidget
+from PySide2.QtWidgets import QApplication, QComboBox, QWidget
 
 
-class combodemo(QWidget):
+class Example(QWidget):
     def __init__(self, parent=None):
-        super(combodemo, self).__init__(parent)
+        super(Example, self).__init__(parent)
+        self.initUI()
+        self.setWindowTitle("Combobox")
+        self.show()
 
-        layout = QHBoxLayout()
-        self.cb = QComboBox()
-        self.cb.addItem("C")
-        self.cb.addItem("C++")
-        self.cb.addItems(["Java", "C#", "Python"])
-        self.cb.currentIndexChanged.connect(self.selectionchange)
-
-        layout.addWidget(self.cb)
-        self.setLayout(layout)
-        self.setWindowTitle("combo box demo")
+    def initUI(self):
+        cb = QComboBox(self)
+        cb.addItem("C")
+        cb.addItem("C++")
+        cb.addItems(["Java", "C#", "Python"])
+        cb.currentIndexChanged.connect(self.selectionchange)
 
     def selectionchange(self, i):
-        print("Items in the list are :")
+        sender = self.sender()
 
-        for count in range(self.cb.count()):
-            print(self.cb.itemText(count))
-        print("Current index", i, "selection changed ", self.cb.currentText())
+        print("Items in the list are :")
+        for count in range(sender.count()):
+            print(sender.itemText(count))
+
+        print("Current index", i, "selection changed ", sender.currentText())
 
 
 def main():
     app = QApplication(sys.argv)
-    ex = combodemo()
-    ex.show()
+    ex = Example()
     sys.exit(app.exec_())
 
 
