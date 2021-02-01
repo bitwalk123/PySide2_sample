@@ -3,7 +3,6 @@
 # reference : https://pythonbasics.org/pyqt-toolbar/
 
 import sys
-from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import (
     QApplication,
     QWidget,
@@ -11,7 +10,6 @@ from PySide2.QtWidgets import (
     QToolButton,
     QGridLayout,
     QPlainTextEdit,
-    QSizePolicy,
 )
 
 
@@ -31,22 +29,17 @@ class Example(QWidget):
         layout.addWidget(toolbar)
 
         # Add buttons to toolbar
-        but_open = QToolButton()
-        but_open.setIcon(QIcon.fromTheme('document-open'))
-        but_open.setCheckable(True)
-        but_open.setAutoExclusive(True)
-        toolbar.addWidget(but_open)
+        tbtn1 = QToolButton()
+        tbtn1.setText("Apple")
+        tbtn1.setCheckable(True)
+        tbtn1.setAutoExclusive(True)
+        toolbar.addWidget(tbtn1)
 
-        # spacer
-        spacer: QWidget = QWidget()
-        spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        toolbar.addWidget(spacer)
-
-        but_exit = QToolButton()
-        but_exit.setIcon(QIcon.fromTheme('application-exit'))
-        but_exit.setCheckable(True)
-        but_exit.setAutoExclusive(True)
-        toolbar.addWidget(but_exit)
+        tbtn2 = QToolButton()
+        tbtn2.setText("Orange")
+        tbtn2.setCheckable(True)
+        tbtn2.setAutoExclusive(True)
+        toolbar.addWidget(tbtn2)
 
         # Add textfield to window
         tedit = QPlainTextEdit()

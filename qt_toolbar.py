@@ -1,19 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
-# reference : https://pythonbasics.org/pyqt-toolbar/
 
 import sys
+from PySide2.QtGui import QIcon
 from PySide2.QtWidgets import (
     QApplication,
-    QWidget,
+    QMainWindow,
+    QSizePolicy,
     QToolBar,
     QToolButton,
-    QGridLayout,
-    QPlainTextEdit,
+    QWidget,
 )
 
 
-class Example(QWidget):
+class Example(QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -21,29 +21,23 @@ class Example(QWidget):
         self.show()
 
     def initUI(self):
-        layout = QGridLayout()
-        self.setLayout(layout)
-
         # Create pyqt toolbar
         toolbar = QToolBar()
-        layout.addWidget(toolbar)
+        self.addToolBar(toolbar)
 
         # Add buttons to toolbar
-        tbtn1 = QToolButton()
-        tbtn1.setText("Apple")
-        tbtn1.setCheckable(True)
-        tbtn1.setAutoExclusive(True)
-        toolbar.addWidget(tbtn1)
+        but_open = QToolButton()
+        but_open.setIcon(QIcon.fromTheme('document-open'))
+        toolbar.addWidget(but_open)
 
-        tbtn2 = QToolButton()
-        tbtn2.setText("Orange")
-        tbtn2.setCheckable(True)
-        tbtn2.setAutoExclusive(True)
-        toolbar.addWidget(tbtn2)
+        # spacer
+        spacer: QWidget = QWidget()
+        spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        toolbar.addWidget(spacer)
 
-        # Add textfield to window
-        tedit = QPlainTextEdit()
-        layout.addWidget(tedit)
+        but_exit = QToolButton()
+        but_exit.setIcon(QIcon.fromTheme('application-exit'))
+        toolbar.addWidget(but_exit)
 
 
 def main():
