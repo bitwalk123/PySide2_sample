@@ -17,7 +17,7 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.setWindowTitle("ToolBar")
+        self.setWindowTitle('ToolBar')
         self.show()
 
     def initUI(self):
@@ -30,13 +30,13 @@ class Example(QWidget):
 
         # Add buttons to toolbar
         tbtn1 = QToolButton()
-        tbtn1.setText("Apple")
+        tbtn1.setText('Apple')
         tbtn1.setCheckable(True)
         tbtn1.setAutoExclusive(True)
         toolbar.addWidget(tbtn1)
 
         tbtn2 = QToolButton()
-        tbtn2.setText("Orange")
+        tbtn2.setText('Orange')
         tbtn2.setCheckable(True)
         tbtn2.setAutoExclusive(True)
         toolbar.addWidget(tbtn2)

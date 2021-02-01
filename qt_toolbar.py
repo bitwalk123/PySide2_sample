@@ -17,7 +17,7 @@ class Example(QMainWindow):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.setWindowTitle("ToolBar")
+        self.setWindowTitle('ToolBar')
         self.show()
 
     def initUI(self):
