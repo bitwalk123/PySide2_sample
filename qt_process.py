@@ -58,7 +58,7 @@ class Example(QMainWindow):
         if os.name == 'nt':
             self.process.start('ping', ['127.0.0.1'])
         else:
-            self.process.start('ping', ['-c', '3', '127.0.0.1'])
+            self.process.start('ping', ['-c', '4', '127.0.0.1'])
 
 
 def main():
