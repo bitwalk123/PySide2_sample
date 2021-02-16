@@ -20,6 +20,7 @@ class Example(QMainWindow):
         super().__init__()
         self.initUI()
         self.setWindowTitle('QProcess')
+        self.setGeometry(300, 150, 800, 600)
         self.show()
 
     def initUI(self):
