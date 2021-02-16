@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# coding: utf-8
+# Reference:
+# https://stackoverflow.com/questions/22069321/realtime-output-from-a-subprogram-to-stdout-of-a-pyqt-widget
+
 import sys
 from PySide2.QtCore import QProcess
 from PySide2.QtWidgets import (
@@ -15,17 +20,6 @@ class Example(QMainWindow):
         super().__init__()
         self.initUI()
         self.show()
-
-    def dataReady(self):
-        cursor = self.output.textCursor()
-        cursor.movePosition(cursor.End)
-        cursor.insertText(str(self.process.readAll()))
-        self.output.ensureCursorVisible()
-
-    def callProgram(self):
-        # run the process
-        # `start` takes the exec and a list of arguments
-        self.process.start('ping', ['127.0.0.1'])
 
     def initUI(self):
         # Layout are better for placing widgets
@@ -51,6 +45,18 @@ class Example(QMainWindow):
         # Disable the button when process starts, and enable it when it finishes
         self.process.started.connect(lambda: self.runButton.setEnabled(False))
         self.process.finished.connect(lambda: self.runButton.setEnabled(True))
+
+    def dataReady(self):
+        cursor = self.output.textCursor()
+        cursor.movePosition(cursor.End)
+        content = self.process.readAllStandardOutput()
+        cursor.insertText(str(content, 'utf-8'))
+        self.output.ensureCursorVisible()
+
+    def callProgram(self):
+        # run the process
+        # `start` takes the exec and a list of arguments
+        self.process.start('ping', ['127.0.0.1'])
 
 
 def main():
