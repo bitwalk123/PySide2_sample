@@ -94,6 +94,8 @@ class Example(QMainWindow):
 
     def on_click_open(self, combo: QComboBox):
         name_file = combo.currentText()
+        if name_file is None:
+            return
 
         # set temporary location where to save name_file
         out_file = os.path.join(tempfile.gettempdir(), name_file)
