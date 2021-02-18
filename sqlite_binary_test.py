@@ -11,7 +11,9 @@ from PySide2.QtWidgets import (
     QWidget,
 )
 import os
+import platform
 import sqlite3
+import subprocess
 import tempfile
 
 
@@ -108,7 +110,10 @@ class Example(QMainWindow):
             f.write(out[0][0])
 
         # open out_file with application
-        os.startfile(out_file)
+        if platform.system() == 'Linux':
+            subprocess.Popen(['xdg-open', name_file])
+        else:
+            os.startfile(out_file)
 
     def initDB(self):
         init_query = [
