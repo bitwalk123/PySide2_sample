@@ -1,4 +1,3 @@
-import sys
 from PySide2.QtWidgets import (
     QAction,
     QApplication,
@@ -14,6 +13,7 @@ import os
 import platform
 import sqlite3
 import subprocess
+import sys
 import tempfile
 
 
@@ -26,7 +26,7 @@ class Example(QMainWindow):
             self.initDB()
 
         self.initUI()
-        self.setWindowTitle('SQLite Test')
+        self.setWindowTitle('SQLite Binary Test')
         self.show()
         self.setGeometry(100, 100, 300, 0)
 
