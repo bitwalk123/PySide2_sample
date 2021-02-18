@@ -121,7 +121,7 @@ class Example(QMainWindow):
 
     def initDB(self):
         init_query = [
-            'CREATE TABLE file (name_file TEXT UNIQUE, content BLOB)',
+            'CREATE TABLE file (name_file TEXT UNIQUE, content NONE)',
         ]
 
         con = sqlite3.connect(self.dbname)
