@@ -111,7 +111,7 @@ class Example(QMainWindow):
 
         # open out_file with application
         if platform.system() == 'Linux':
-            subprocess.Popen(['xdg-open', name_file])
+            subprocess.Popen(['xdg-open', out_file])
         else:
             os.startfile(out_file)
 
