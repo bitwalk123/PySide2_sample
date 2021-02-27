@@ -3,8 +3,12 @@
 # reference : https://github.com/andriyantohalim/PySide2_Tutorial
 
 import sys
-from PySide2.QtWidgets import QApplication, QWidget, QLabel
-
+from PySide2.QtWidgets import (
+    QApplication,
+    QLabel,
+    QVBoxLayout,
+    QWidget,
+)
 
 class Example(QWidget):
     def __init__(self):
@@ -14,9 +18,11 @@ class Example(QWidget):
         self.show()
 
     def initUI(self):
-        lb = QLabel('<font color=#888 size=40>ラベル</font>', self)
-        lb.resize(lb.sizeHint())
-        lb.move(50, 20)
+        vbox = QVBoxLayout()
+        self.setLayout(vbox)
+
+        lab = QLabel('ラベルは文字を表示します。')
+        vbox.addWidget(lab)
 
 
 def main():
