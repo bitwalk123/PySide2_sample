@@ -1,10 +1,15 @@
 #!/usr/bin/env python
 # coding: utf-8
-# reference : https://github.com/andriyantohalim/PySide2_Tutorial
 
 import sys
 from PySide2.QtCore import Slot
-from PySide2.QtWidgets import QApplication, QWidget, QPushButton
+from PySide2.QtWidgets import (
+    QApplication,
+    QPushButton,
+    QSizePolicy,
+    QVBoxLayout,
+    QWidget,
+)
 
 
 class Example(QWidget):
@@ -15,14 +20,16 @@ class Example(QWidget):
         self.show()
 
     def initUI(self):
-        btn: QPushButton = QPushButton('プッシュボタン', self)
-        btn.clicked.connect(self.buttonClicked)
-        btn.resize(btn.sizeHint())
-        btn.move(50, 20)
+        vbox = QVBoxLayout()
+        self.setLayout(vbox)
 
-    @Slot()
+        btn = QPushButton('プッシュボタン')
+        btn.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        btn.clicked.connect(self.buttonClicked)
+        vbox.addWidget(btn)
+
     def buttonClicked(self):
-        obj: QPushButton = self.sender()
+        obj = self.sender()
         print('「' + obj.text() + '」がクリックされました。')
 
 
