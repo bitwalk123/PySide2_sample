@@ -6,7 +6,6 @@ from PySide2.QtCore import Qt
 from PySide2.QtWidgets import (
     QApplication,
     QGridLayout,
-    QLabel,
     QLCDNumber,
     QPushButton,
     QSizePolicy,
