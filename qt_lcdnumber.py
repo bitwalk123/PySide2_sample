@@ -12,7 +12,7 @@ class Example(QWidget):
         super().__init__()
         self.initUI()
         self.setGeometry(300, 300, 250, 150)
-        self.setWindowTitle('Signal & slot')
+        self.setWindowTitle('LCDNumber')
         self.show()
 
     def initUI(self):
