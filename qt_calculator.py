@@ -3,6 +3,7 @@
 # reference : https://github.com/andriyantohalim/PySide2_Tutorial
 
 import sys
+from PySide2.QtCore import Qt
 from PySide2.QtWidgets import (
     QApplication,
     QGridLayout,
@@ -19,6 +20,7 @@ class Calculator(QWidget):
         super().__init__()
         self.initUI()
         self.setWindowTitle('Calculator')
+        self.setWindowFlags(Qt.MSWindowsFixedSizeDialogHint)
         self.show()
 
     def initUI(self):
