@@ -18,111 +18,57 @@ class Calculator(QWidget):
         super().__init__()
         self.initUI()
         self.setWindowTitle('Calculator')
-        self.setWindowFlags(Qt.MSWindowsFixedSizeDialogHint)
+        self.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint)
         self.show()
 
     def initUI(self):
         grid = QGridLayout()
+        grid.setHorizontalSpacing(2)
+        grid.setVerticalSpacing(2)
         self.setLayout(grid)
 
-        grid.setRowMinimumHeight(0, 48)
-
-        r = 0
         lcd = QLCDNumber(self)
         lcd.setDigitCount(12)
+        #lcd.display(0.)
         lcd.display(0.123456789)
+        lcd.setStyleSheet("QLCDNumber {color:darkgreen;}")
         lcd.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(lcd, r, 0, 1, 4)
-        r += 1
+        grid.addWidget(lcd, 0, 0, 1, 4)
+        grid.setRowMinimumHeight(0, 48)
 
-        btn_clear = QPushButton('Ｃ')
-        btn_clear.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_clear, r, 0)
+        list_key = (
+            ('Ｃ', 1, 0, 'func'),
+            ('％', 1, 1, 'func'),
+            ('√', 1, 2, 'func'),
+            ('÷', 1, 3, 'ope'),
+            ('７', 2, 0, 'num'),
+            ('８', 2, 1, 'num'),
+            ('９', 2, 2, 'num'),
+            ('×', 2, 3, 'ope'),
+            ('４', 3, 0, 'num'),
+            ('５', 3, 1, 'num'),
+            ('６', 3, 2, 'num'),
+            ('－', 3, 3, 'ope'),
+            ('１', 4, 0, 'num'),
+            ('２', 4, 1, 'num'),
+            ('３', 4, 2, 'num'),
+            ('＋', 4, 3, 'func'),
+            ('０', 5, 0, 'num'),
+            ('・', 5, 1, 'num'),
+            ('±', 5, 2, 'func'),
+            ('＝', 5, 3, 'ope'),
+        )
+        for key in list_key:
+            self.gen_key_pad(grid, key)
 
-        btn_percent = QPushButton('％')
-        btn_percent.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_percent, r, 1)
-
-        btn_root = QPushButton('√')
-        btn_root.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_root, r, 2)
-
-        btn_div = QPushButton('÷')
-        btn_div.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_div, r, 3)
-        r += 1
-
-        btn_7 = QPushButton('７')
-        btn_7.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_7, r, 0)
-
-        btn_8 = QPushButton('８')
-        btn_8.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_8, r, 1)
-
-        btn_9 = QPushButton('９')
-        btn_9.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_9, r, 2)
-
-        btn_mul = QPushButton('×')
-        btn_mul.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_mul, r, 3)
-
-        r += 1
-
-        btn_4 = QPushButton('４')
-        btn_4.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_4, r, 0)
-
-        btn_5 = QPushButton('５')
-        btn_5.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_5, r, 1)
-
-        btn_6 = QPushButton('６')
-        btn_6.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_6, r, 2)
-
-        btn_minus = QPushButton('ー')
-        btn_minus.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_minus, r, 3)
-
-        r += 1
-
-        btn_1 = QPushButton('１')
-        btn_1.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_1, r, 0)
-
-        btn_2 = QPushButton('２')
-        btn_2.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_2, r, 1)
-
-        btn_3 = QPushButton('３')
-        btn_3.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_3, r, 2)
-
-        btn_plus = QPushButton('＋')
-        btn_plus.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_plus, r, 3)
-
-        r += 1
-
-        btn_0 = QPushButton('０')
-        btn_0.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_0, r, 0)
-
-        btn_point = QPushButton('・')
-        btn_point.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_point, r, 1)
-
-        btn_sign = QPushButton('±')
-        btn_sign.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_sign, r, 2)
-
-        btn_equal = QPushButton('＝')
-        btn_equal.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(btn_equal, r, 3)
-
-        r += 1
+    def gen_key_pad(self, grid, info):
+        label = info[0]
+        y = info[1]
+        x = info[2]
+        button = QPushButton(label)
+        button.setStyleSheet("QPushButton {font-size:12pt; padding: 5px 20px;}")
+        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        grid.addWidget(button, y, x)
 
 
 def main():
