@@ -20,8 +20,9 @@ class Calculator(QWidget):
         #self.setWhatsThis("Help on widget")
         self.initUI()
         self.setWindowTitle('Calculator')
-        #self.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint)
         self.setWindowFlags(Qt.WindowMinimizeButtonHint | Qt.WindowCloseButtonHint)
+        # This can be used for Windows
+        # self.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint)
         self.show()
 
     def initUI(self):
