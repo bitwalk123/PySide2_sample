@@ -6,6 +6,7 @@ from PySide2.QtCore import Qt
 from PySide2.QtWidgets import (
     QApplication,
     QGridLayout,
+    QLayout,
     QLCDNumber,
     QPushButton,
     QSizePolicy,
@@ -19,13 +20,17 @@ class Calculator(QWidget):
         #self.setWhatsThis("Help on widget")
         self.initUI()
         self.setWindowTitle('Calculator')
-        self.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint)
+        #self.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint)
+        self.setWindowFlags(Qt.WindowCloseButtonHint)
         self.show()
 
     def initUI(self):
         grid = QGridLayout()
         grid.setHorizontalSpacing(2)
         grid.setVerticalSpacing(2)
+        # Reference
+        # https://stackoverflow.com/questions/16673074/how-can-i-fully-disable-resizing-a-window-including-the-resize-icon-when-the-mou
+        grid.setSizeConstraint(QLayout.SetFixedSize)
         self.setLayout(grid)
 
         lcd = QLCDNumber(self)
