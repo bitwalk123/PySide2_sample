@@ -16,6 +16,7 @@ from PySide2.QtWidgets import (
 class Calculator(QWidget):
     def __init__(self):
         super().__init__()
+        #self.setWhatsThis("Help on widget")
         self.initUI()
         self.setWindowTitle('Calculator')
         self.setWindowFlags(Qt.Dialog | Qt.MSWindowsFixedSizeDialogHint)
