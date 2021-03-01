@@ -73,7 +73,7 @@ class Calculator(QWidget):
         y = info[1]
         x = info[2]
         button = QPushButton(label)
-        button.setStyleSheet("QPushButton {font-size:12pt; padding:5px 20px; color:#888}")
+        button.setStyleSheet("QPushButton {font-size:12pt; padding:5px 20px; color:#666;}")
         button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         grid.addWidget(button, y, x)
 
