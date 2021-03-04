@@ -19,30 +19,30 @@ from PySide2.QtWidgets import (
 
 class Calculator(QWidget):
     # Key Layout
-    list_key = (
-        ('Ｃ', 1, 0, 'func'),
-        ('％', 1, 1, 'func'),
-        ('√', 1, 2, 'func'),
-        ('÷', 1, 3, 'ope'),
-        ('７', 2, 0, 'num'),
-        ('８', 2, 1, 'num'),
-        ('９', 2, 2, 'num'),
-        ('×', 2, 3, 'ope'),
-        ('４', 3, 0, 'num'),
-        ('５', 3, 1, 'num'),
-        ('６', 3, 2, 'num'),
-        ('－', 3, 3, 'ope'),
-        ('１', 4, 0, 'num'),
-        ('２', 4, 1, 'num'),
-        ('３', 4, 2, 'num'),
-        ('＋', 4, 3, 'func'),
-        ('０', 5, 0, 'num'),
-        ('・', 5, 1, 'num'),
-        ('±', 5, 2, 'func'),
-        ('＝', 5, 3, 'ope'),
-    )
+    keys_info = [
+        {"label": "Ｃ", "x": 0, "y": 1, "w": 1, "h": 1, "name": "Cls", "method": "on_clear"},
+        {"label": "√", "x": 1, "y": 1, "w": 1, "h": 1, "name": "Fnc", "method": "on_function"},
+        {"label": "±", "x": 2, "y": 1, "w": 1, "h": 1, "name": "Fnc", "method": "on_function"},
+        {"label": "÷", "x": 3, "y": 1, "w": 1, "h": 1, "name": "Ope", "method": "on_operation"},
+        {"label": "７", "x": 0, "y": 2, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "８", "x": 1, "y": 2, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "９", "x": 2, "y": 2, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "×", "x": 3, "y": 2, "w": 1, "h": 1, "name": "Ope", "method": "on_operation"},
+        {"label": "４", "x": 0, "y": 3, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "５", "x": 1, "y": 3, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "６", "x": 2, "y": 3, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "−", "x": 3, "y": 3, "w": 1, "h": 1, "name": "Ope", "method": "on_operation"},
+        {"label": "１", "x": 0, "y": 4, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "２", "x": 1, "y": 4, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "３", "x": 2, "y": 4, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "＋", "x": 3, "y": 4, "w": 1, "h": 2, "name": "Ope", "method": "on_operation"},
+        {"label": "０", "x": 0, "y": 5, "w": 1, "h": 1, "name": "Key", "method": "on_number"},
+        {"label": "・", "x": 1, "y": 5, "w": 1, "h": 1, "name": "Key", "method": "on_dot"},
+        {"label": "＝", "x": 2, "y": 5, "w": 1, "h": 1, "name": "Ope", "method": "on_equal"},
+    ]
+
     # initial display
-    display_initial = "0."
+    display_initial = '0.'
     # max length
     max_chars = 12
 
@@ -77,27 +77,25 @@ class Calculator(QWidget):
         grid.setSizeConstraint(QLayout.SetFixedSize)
         self.setLayout(grid)
 
-        self.lcd = QLCDNumber(self)
-        self.lcd.setDigitCount(self.max_chars)
+        self.ent = QLCDNumber(self)
+        self.ent.setDigitCount(self.max_chars)
         # lcd.display(0.)
-        value = 0.123456789
-        self.lcd.display(value)
-        self.lcd.setStyleSheet("QLCDNumber {color:darkgreen;}")
-        self.lcd.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(self.lcd, 0, 0, 1, 4)
+        valueStr = '0.'
+        self.ent.display(valueStr)
+        self.ent.setStyleSheet("QLCDNumber {color:darkgreen;}")
+        self.ent.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        grid.addWidget(self.ent, 0, 0, 1, 4)
         grid.setRowMinimumHeight(0, 48)
 
-        for key in self.list_key:
-            self.gen_key_pad(grid, key)
-
-    def gen_key_pad(self, grid, info):
-        label = info[0]
-        y = info[1]
-        x = info[2]
-        button = QPushButton(label)
-        button.setStyleSheet("QPushButton {font-size:12pt; padding:5px 20px; color:#666;}")
-        button.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        grid.addWidget(button, y, x)
+        for key in self.keys_info:
+            # but = Gtk.Button(name=key["name"], label=key["label"])
+            but = QPushButton(key['label'])
+            method_name = key['method']
+            method = getattr(self, method_name)
+            but.clicked.connect(method)
+            but.setStyleSheet("QPushButton {font-size:12pt; padding:5px 20px; color:#666;}")
+            but.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+            grid.addWidget(but, key['y'], key['x'], key['h'], key['w'])
 
     # -------------------------------------------------------------------------
     #  get_display_string
@@ -167,8 +165,9 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     def set_display(self, text):
         length = len(text)
-        self.ent.set_text(text)
-        self.ent.set_position(length)
+        #self.ent.set_text(text)
+        #self.ent.set_position(length)
+        self.ent.display(text)
 
     # -------------------------------------------------------------------------
     #  zenkaku_to_hankaku
@@ -189,7 +188,8 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     #  on_clear
     # -------------------------------------------------------------------------
-    def on_clear(self, button):
+    def on_clear(self):
+        button = self.sender()
         # display
         self.set_display(self.display_initial)
 
@@ -201,7 +201,8 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     #  on_dot
     # -------------------------------------------------------------------------
-    def on_dot(self, button):
+    def on_dot(self):
+        button = self.sender()
         if self.flag_error:
             return
 
@@ -211,7 +212,8 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     #  on_equal
     # -------------------------------------------------------------------------
-    def on_equal(self, button):
+    def on_equal(self):
+        button = self.sender()
         if self.flag_error:
             return
 
@@ -238,7 +240,8 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     #  on_function
     # -------------------------------------------------------------------------
-    def on_function(self, button):
+    def on_function(self):
+        button = self.sender()
         if self.flag_error:
             return
 
@@ -260,7 +263,8 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     #  on_operation
     # -------------------------------------------------------------------------
-    def on_operation(self, button):
+    def on_operation(self):
+        button = self.sender()
         if self.flag_error:
             return
 
@@ -278,15 +282,22 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     #  on_number
     # -------------------------------------------------------------------------
-    def on_number(self, button):
+    def on_number(self):
+        button = self.sender()
         if self.flag_error:
             return
 
         # get current string displayed
-        disp_current = self.ent.get_text()
+        valueStr = str(self.ent.value())
+        result = self.re2.match(valueStr)
+        if result:
+            disp_current = result.group(1)
+        else:
+            disp_current = valueStr
+        print(disp_current)
 
         # get string from key label
-        text = button.get_label()
+        text = button.text()
         text_ascii = self.zenkaku_to_hankaku(text)
 
         # update string to display
@@ -294,11 +305,11 @@ class Calculator(QWidget):
             disp_new = text_ascii + "."
             self.flag_operation = False
         else:
-            if disp_current == "0.":
+            if disp_current == '0.':
                 if self.flag_dot:
                     disp_new = disp_current + text_ascii
                 else:
-                    disp_new = text_ascii + "."
+                    disp_new = text_ascii + '.'
             else:
                 # check charcter length (digit)
                 if len(disp_current) > self.max_chars:
