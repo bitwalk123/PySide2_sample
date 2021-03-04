@@ -78,14 +78,12 @@ class Calculator(QWidget):
         self.setLayout(grid)
 
         self.ent = QLCDNumber(self)
-        self.ent.setDigitCount(self.max_chars)
-        # lcd.display(0.)
-        valueStr = '0.'
-        self.ent.display(valueStr)
+        self.ent.setDigitCount(self.max_chars + 2)
+        self.ent.display(self.display_initial)
         self.ent.setStyleSheet("QLCDNumber {color:darkgreen;}")
         self.ent.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         grid.addWidget(self.ent, 0, 0, 1, 4)
-        grid.setRowMinimumHeight(0, 48)
+        grid.setRowMinimumHeight(0, 40)
 
         for key in self.keys_info:
             # but = Gtk.Button(name=key["name"], label=key["label"])
@@ -93,7 +91,7 @@ class Calculator(QWidget):
             method_name = key['method']
             method = getattr(self, method_name)
             but.clicked.connect(method)
-            but.setStyleSheet("QPushButton {font-size:12pt; padding:5px 20px; color:#666;}")
+            but.setStyleSheet("QPushButton {font-size:12pt; padding:5px 30px; color:#666;}")
             but.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
             grid.addWidget(but, key['y'], key['x'], key['h'], key['w'])
 
@@ -165,8 +163,8 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     def set_display(self, text):
         length = len(text)
-        #self.ent.set_text(text)
-        #self.ent.set_position(length)
+        # self.ent.set_text(text)
+        # self.ent.set_position(length)
         self.ent.display(text)
 
     # -------------------------------------------------------------------------
@@ -288,6 +286,7 @@ class Calculator(QWidget):
             return
 
         # get current string displayed
+        # need to think about '0.000001'
         valueStr = str(self.ent.value())
         result = self.re2.match(valueStr)
         if result:
