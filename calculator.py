@@ -162,6 +162,8 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     def set_display(self, text):
         self.ent.set_text(text)
+        # TODO
+        # need to ckecl length of display
         self.lcd.display(self.ent.get_text())
 
     # -------------------------------------------------------------------------
