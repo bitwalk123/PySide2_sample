@@ -130,7 +130,8 @@ class Calculator(QWidget):
         # square root
         if text == "√":
             try:
-                return round(math.sqrt(value), self.max_chars - 2)
+                #return round(math.sqrt(value), self.max_chars - 2)
+                return math.sqrt(value)
             except Exception as e:
                 self.flag_error = True
                 return e
@@ -162,8 +163,7 @@ class Calculator(QWidget):
     # -------------------------------------------------------------------------
     def set_display(self, text):
         self.ent.set_text(text)
-        # TODO
-        # need to ckecl length of display
+        print(text, 'width =', len(text))
         self.lcd.display(self.ent.get_text())
 
     # -------------------------------------------------------------------------
