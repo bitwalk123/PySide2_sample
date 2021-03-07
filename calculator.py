@@ -104,15 +104,17 @@ class Calculator(QWidget):
     #    string to display
     # -------------------------------------------------------------------------
     def get_display_string(self, value):
-        #print(value)
+        # print(value)
         str_value = str(value)
         self.ent.set_text(str_value)
 
+        n = 12
+        m = pow(10.0, n)
         value_int = int(value)
         if abs(value_int) > 0:
             value_int_length = int(math.log10(value_int)) + 1
-            if value_int_length < 8:
-                if abs(value - value_int) < 0.000001:
+            if value_int_length < n:
+                if abs(value - value_int) < 1 / m:
                     str_value = str(value_int)
                 else:
                     str_value = '{:f}'.format(value)
@@ -120,11 +122,10 @@ class Calculator(QWidget):
                 str_value = '{:.3e}'.format(value)
         else:
             value_decimal = abs(value - value_int)
-            if value_decimal < 0.000001:
+            if value_decimal < 1 / m:
                 str_value = '{:.3e}'.format(value)
             else:
-                str_value = str(int(value * 1000000) / 1000000)
-
+                str_value = str(int(value * m) / m)
 
         result = self.re2.match(str_value)
         if result:
@@ -150,7 +151,7 @@ class Calculator(QWidget):
         # square root
         if text == "√":
             try:
-                #return round(math.sqrt(value), self.max_chars - 2)
+                # return round(math.sqrt(value), self.max_chars - 2)
                 return math.sqrt(value)
             except Exception as e:
                 self.flag_error = True
