@@ -107,7 +107,7 @@ class Calculator(QWidget):
         str_value = str(value)
         self.ent.set_text(str_value)
 
-        n = 12
+        n = self.max_chars - 4
         m = pow(10.0, n)
         value_int = int(value)
         if abs(value_int) > 0:
