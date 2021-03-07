@@ -104,14 +104,31 @@ class Calculator(QWidget):
     #    string to display
     # -------------------------------------------------------------------------
     def get_display_string(self, value):
-        str_display = str(value)
+        #print(value)
+        str_value = str(value)
+        self.ent.set_text(str_value)
 
-        result = self.re2.match(str_display)
+        value_int = abs(int(value))
+        if value_int > 0:
+            value_int_length = int(math.log10(value_int)) + 1
+            if value_int_length < 8:
+                str_value = '{:f}'.format(value)
+            else:
+                str_value = '{:.3e}'.format(value)
+        else:
+            value_decimal = value - value_int
+            if value_decimal < 0.000001:
+                str_value = '{:.3e}'.format(value)
+            else:
+                str_value = str(int(value * 1000000) / 1000000)
+
+
+        result = self.re2.match(str_value)
         if result:
-            str_display = result.group(1)
-            return str_display
+            str_value = result.group(1)
+            return str_value
 
-        return str_display
+        return str_value
 
     # -------------------------------------------------------------------------
     #  get_function_result
@@ -162,9 +179,7 @@ class Calculator(QWidget):
     #    text : string to display
     # -------------------------------------------------------------------------
     def set_display(self, text):
-        self.ent.set_text(text)
-        print(text, 'width =', len(text))
-        self.lcd.display(self.ent.get_text())
+        self.lcd.display(text)
 
     # -------------------------------------------------------------------------
     #  zenkaku_to_hankaku
@@ -313,6 +328,7 @@ class Calculator(QWidget):
                     else:
                         disp_new = disp_current + text_ascii
 
+        self.ent.set_text(disp_new)
         self.set_display(disp_new)
 
 
