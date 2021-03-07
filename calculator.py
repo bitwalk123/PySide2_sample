@@ -108,15 +108,18 @@ class Calculator(QWidget):
         str_value = str(value)
         self.ent.set_text(str_value)
 
-        value_int = abs(int(value))
-        if value_int > 0:
+        value_int = int(value)
+        if abs(value_int) > 0:
             value_int_length = int(math.log10(value_int)) + 1
             if value_int_length < 8:
-                str_value = '{:f}'.format(value)
+                if abs(value - value_int) < 0.000001:
+                    str_value = str(value_int)
+                else:
+                    str_value = '{:f}'.format(value)
             else:
                 str_value = '{:.3e}'.format(value)
         else:
-            value_decimal = value - value_int
+            value_decimal = abs(value - value_int)
             if value_decimal < 0.000001:
                 str_value = '{:.3e}'.format(value)
             else:
