@@ -151,7 +151,6 @@ class Calculator(QWidget):
         # square root
         if text == "√":
             try:
-                # return round(math.sqrt(value), self.max_chars - 2)
                 return math.sqrt(value)
             except Exception as e:
                 self.flag_error = True
