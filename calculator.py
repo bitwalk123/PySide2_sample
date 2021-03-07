@@ -104,7 +104,6 @@ class Calculator(QWidget):
     #    string to display
     # -------------------------------------------------------------------------
     def get_display_string(self, value):
-        # print(value)
         str_value = str(value)
         self.ent.set_text(str_value)
 
