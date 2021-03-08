@@ -104,6 +104,9 @@ class Calculator(QWidget):
     #    string to display
     # -------------------------------------------------------------------------
     def get_display_string(self, value):
+        if self.flag_error:
+            return value
+
         str_value = str(value)
         self.ent.set_text(str_value)
 
@@ -111,7 +114,7 @@ class Calculator(QWidget):
         m = pow(10.0, n)
         value_int = int(value)
         if abs(value_int) > 0:
-            value_int_length = int(math.log10(value_int)) + 1
+            value_int_length = int(math.log10(abs(value_int))) + 1
             if value_int_length < n:
                 if abs(value - value_int) < 1 / m:
                     str_value = str(value_int)
@@ -153,7 +156,8 @@ class Calculator(QWidget):
                 return math.sqrt(value)
             except Exception as e:
                 self.flag_error = True
-                return e
+                #return e
+                return "Error"
 
     # -------------------------------------------------------------------------
     #  get_operator
@@ -238,8 +242,9 @@ class Calculator(QWidget):
         try:
             result = eval(expr)
         except Exception as e:
-            result = e
             self.flag_error = True
+            #result = e
+            result = "Error"
 
         disp_new = self.get_display_string(result)
 
