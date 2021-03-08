@@ -295,6 +295,7 @@ class Calculator(QWidget):
 
         # flag
         self.flag_operation = True
+        self.flag_dot = False
 
     # -------------------------------------------------------------------------
     #  on_number
