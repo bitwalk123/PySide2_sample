@@ -110,21 +110,21 @@ class Calculator(QWidget):
         str_value = str(value)
         self.ent.set_text(str_value)
 
-        n = self.max_chars - 4
-        m = pow(10.0, n)
+        m = pow(10.0, self.max_chars)
         value_int = int(value)
         if abs(value_int) > 0:
             value_int_length = int(math.log10(abs(value_int))) + 1
-            if value_int_length < n:
+            if value_int_length < self.max_chars:
                 if abs(value - value_int) < 1 / m:
                     str_value = str(value_int)
                 else:
                     str_value = str(int(value * m) / m)
+                    while len(str_value) > self.max_chars:
+                        m = m / 10
+                        str_value = str(int(value * m) / m)
             else:
                 str_value = '{:.3e}'.format(value)
         else:
-            #value_decimal = abs(value - value_int)
-            #if value_decimal < 1 / m:
             if value < 1 / m:
                 str_value = '{:.3e}'.format(value)
             else:
