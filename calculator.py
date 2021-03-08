@@ -119,7 +119,6 @@ class Calculator(QWidget):
                 if abs(value - value_int) < 1 / m:
                     str_value = str(value_int)
                 else:
-                    #str_value = '{:f}'.format(value)
                     str_value = str(int(value * m) / m)
             else:
                 str_value = '{:.3e}'.format(value)
