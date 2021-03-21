@@ -5,7 +5,6 @@
 
 import sys
 from bz2 import decompress
-
 from PySide2.QtCore import QByteArray
 from PySide2.QtGui import QPixmap
 from PySide2.QtWidgets import (
@@ -20,7 +19,7 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
-        self.setWindowTitle("Label")
+        self.setWindowTitle('Label')
         self.show()
 
     def initUI(self):
