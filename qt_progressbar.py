@@ -4,8 +4,13 @@
 # https://codeloop.org/how-to-create-progressbar-in-pyside2/
 
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow, QProgressBar, QStatusBar, QLabel
-from PySide2.QtGui import QIcon
+from PySide2.QtWidgets import (
+    QApplication,
+    QLabel,
+    QMainWindow,
+    QProgressBar,
+    QStatusBar,
+)
 
 
 class Example(QMainWindow):
@@ -14,22 +19,22 @@ class Example(QMainWindow):
 
         self.initUI()
         self.setWindowTitle("ProgressBar")
-        self.setGeometry(300, 200, 500, 400)
+        self.setGeometry(100, 100, 500, 400)
         self.show()
 
     def initUI(self):
-        self.statusLabel = QLabel("Showing Progress")
+        statusLabel = QLabel("Showing Progress")
 
         self.progressbar = QProgressBar()
         self.progressbar.setMinimum(0)
         self.progressbar.setMaximum(100)
         self.progressbar.setValue(10)
 
-        self.statusBar = QStatusBar()
-        self.statusBar.addWidget(self.statusLabel, 1)
-        self.statusBar.addWidget(self.progressbar, 2)
+        statusBar = QStatusBar()
+        statusBar.addWidget(statusLabel, 1)
+        statusBar.addWidget(self.progressbar, 2)
 
-        self.setStatusBar(self.statusBar)
+        self.setStatusBar(statusBar)
 
 
 def main():
