@@ -59,9 +59,9 @@ class TaskThread(QThread):
     progressChanged = Signal(int)
 
     def run(self):
-        for x in range(0, 101):
+        for progress in range(0, 101):
             time.sleep(0.1)
-            self.progressChanged.emit(x)
+            self.progressChanged.emit(progress)
         self.exit(0)
 
 
