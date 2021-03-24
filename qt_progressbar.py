@@ -28,6 +28,7 @@ class Example(QMainWindow):
         self.task_def()
 
         self.setWindowTitle('ProgressBar & Thread')
+        self.resize(300, 100)
         self.show()
 
     def initUI(self):
