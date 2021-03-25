@@ -38,6 +38,7 @@ class Example(QWidget):
 
 def main():
     app = QApplication(sys.argv)
+    app.setStyle('Fusion')
     ex = Example()
     sys.exit(app.exec_())
 
