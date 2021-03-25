@@ -6,10 +6,11 @@
 import sys
 from PySide2.QtWidgets import (
     QApplication,
-    QWidget,
     QDial,
-    QVBoxLayout,
     QLabel,
+    QStyleFactory,
+    QVBoxLayout,
+    QWidget,
 )
 
 
@@ -38,6 +39,7 @@ class Example(QWidget):
 
 def main():
     app = QApplication(sys.argv)
+    print(QStyleFactory.keys())
     app.setStyle('Fusion')
     ex = Example()
     sys.exit(app.exec_())
