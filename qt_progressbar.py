@@ -32,11 +32,11 @@ class Example(QMainWindow):
         self.show()
 
     def initUI(self):
-        self.but = QPushButton("Start Job")
+        self.but = QPushButton('スタート')
         self.but.clicked.connect(self.task_start)
         self.setCentralWidget(self.but)
 
-        status_label = QLabel("Progress")
+        status_label = QLabel('進捗')
         status_label.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         self.proggress_bar = QProgressBar()
         self.proggress_bar.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
