@@ -32,6 +32,7 @@ class Example(QWidget):
         dial.setMaximum(self.value_max)
         dial.setValue(self.value_old)
         dial.valueChanged.connect(lambda: self.dialer_changed(dial, label))
+
         label = QLabel()
         self.disp_value(label, self.value_old)
 
