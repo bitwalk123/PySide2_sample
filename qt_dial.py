@@ -8,7 +8,7 @@ from PySide2.QtWidgets import (
     QApplication,
     QDial,
     QLabel,
-    QStyleFactory,
+    QSizePolicy,
     QVBoxLayout,
     QWidget,
 )
@@ -24,9 +24,11 @@ class Example(QWidget):
         super().__init__()
         self.setWindowTitle('Dial')
         self.initUI()
+        self.resize(200, 200)
 
     def initUI(self):
         dial = QDial()
+        dial.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         dial.setNotchesVisible(True)
         dial.setMinimum(self.value_min)
         dial.setMaximum(self.value_max)
