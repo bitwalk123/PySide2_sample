@@ -15,31 +15,49 @@ from PySide2.QtWidgets import (
 
 
 class Example(QWidget):
+    oldValue = 0
+    minValue = 0
+    maxValue = 100
+    delta = 10
+
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('QDialog')
+        self.setWindowTitle('QDial')
         self.initUI()
 
     def initUI(self):
-        self.dial = QDial()
-        self.dial.setMaximum(0)
-        self.dial.setMaximum(100)
-        self.dial.setValue(0)
-        self.dial.valueChanged.connect(self.dialer_changed)
-        self.label = QLabel()
+        dial = QDial()
+        dial.setMaximum(self.minValue)
+        dial.setMaximum(self.maxValue)
+        dial.setValue(self.oldValue)
+        dial.valueChanged.connect(lambda: self.dialer_changed(dial, label))
+        label = QLabel()
+        self.disp_value(label, self.oldValue)
+
         vbox = QVBoxLayout()
-        vbox.addWidget(self.dial)
-        vbox.addWidget(self.label)
+        vbox.addWidget(dial)
+        vbox.addWidget(label)
         self.setLayout(vbox)
         self.show()
 
-    def dialer_changed(self):
-        self.label.setText('値 : ' + str(self.dial.value()))
+    def dialer_changed(self, d: QDial, l: QLabel):
+        newValue = d.value()
+
+        if (abs(newValue - self.oldValue) > self.delta):
+            d.setValue(self.oldValue)
+            newValue = self.oldValue
+        else:
+            self.oldValue = newValue
+
+        self.disp_value(l, newValue)
+
+    def disp_value(self, l, newValue):
+        l.setText('value : ' + str(newValue))
 
 
 def main():
     app = QApplication(sys.argv)
-    #print(QStyleFactory.keys())
+    # print(QStyleFactory.keys())
     app.setStyle('Fusion')
     ex = Example()
     sys.exit(app.exec_())
