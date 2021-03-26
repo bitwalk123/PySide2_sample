@@ -39,7 +39,7 @@ class Example(QWidget):
 
 def main():
     app = QApplication(sys.argv)
-    print(QStyleFactory.keys())
+    #print(QStyleFactory.keys())
     app.setStyle('Fusion')
     ex = Example()
     sys.exit(app.exec_())
