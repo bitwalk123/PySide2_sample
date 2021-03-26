@@ -15,24 +15,25 @@ from PySide2.QtWidgets import (
 
 
 class Example(QWidget):
-    oldValue = 0
-    minValue = 0
-    maxValue = 100
-    delta = 10
+    value_old = 0
+    value_min = 0
+    value_max = 100
+    value_delta = 10
 
     def __init__(self):
         super().__init__()
-        self.setWindowTitle('QDial')
+        self.setWindowTitle('Dial')
         self.initUI()
 
     def initUI(self):
         dial = QDial()
-        dial.setMaximum(self.minValue)
-        dial.setMaximum(self.maxValue)
-        dial.setValue(self.oldValue)
+        dial.setNotchesVisible(True)
+        dial.setMinimum(self.value_min)
+        dial.setMaximum(self.value_max)
+        dial.setValue(self.value_old)
         dial.valueChanged.connect(lambda: self.dialer_changed(dial, label))
         label = QLabel()
-        self.disp_value(label, self.oldValue)
+        self.disp_value(label, self.value_old)
 
         vbox = QVBoxLayout()
         vbox.addWidget(dial)
@@ -40,19 +41,19 @@ class Example(QWidget):
         self.setLayout(vbox)
         self.show()
 
-    def dialer_changed(self, d: QDial, l: QLabel):
-        newValue = d.value()
+    def dialer_changed(self, d: QDial, lab: QLabel):
+        value = d.value()
 
-        if (abs(newValue - self.oldValue) > self.delta):
-            d.setValue(self.oldValue)
-            newValue = self.oldValue
+        if (abs(value - self.value_old) > self.value_delta):
+            d.setValue(self.value_old)
+            value = self.value_old
         else:
-            self.oldValue = newValue
+            self.value_old = value
 
-        self.disp_value(l, newValue)
+        self.disp_value(lab, value)
 
-    def disp_value(self, l, newValue):
-        l.setText('value : ' + str(newValue))
+    def disp_value(self, lab: QLabel, x: int):
+        lab.setText('value : ' + str(x))
 
 
 def main():
